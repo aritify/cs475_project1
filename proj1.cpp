@@ -101,7 +101,7 @@ main( int argc, char *argv[ ] )
 
 		numHits = 0;
 
-		#pragma omp parallel for shared(dx),reduction(+:sum)	// reduction trapezoid summing
+		#pragma omp parallel for shared(v,thr,vx,vy,g,h,d),reduction(+:numHits)	// reduction trapezoid summing
 		for( int n = 0; n < NUMTRIALS; n++ )
 		{
 			// randomize everything:
@@ -166,7 +166,7 @@ main( int argc, char *argv[ ] )
 					float upperDist = vx * tmax  -  g;
 
 					// see if the ball hits the castle:
-					if(  fabs( upperDist - d ) ≤ TOL )
+					if(  fabs( upperDist - d ) <= TOL )
 					{
 						if( DEBUG )  fprintf( stderr, "Hits the castle at upperDist = %8.3f\n", upperDist );
 						numHits++;	// increment numHits since castle is hit
