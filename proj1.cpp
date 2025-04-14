@@ -101,7 +101,7 @@ main( int argc, char *argv[ ] )
 
 		numHits = 0;
 
-		#pragma omp parallel for shared(v,thr,vx,vy,g,h,d),reduction(+:numHits)	// reduction trapezoid summing
+		#pragma omp parallel for shared(vs,ths,gs,hs,ds),reduction(+:numHits)	// reduction trapezoid summing
 		for( int n = 0; n < NUMTRIALS; n++ )
 		{
 			// randomize everything:
